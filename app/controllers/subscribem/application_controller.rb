@@ -29,5 +29,11 @@ module Subscribem
     end
     helper_method :authenticate_user!
 
+    def force_authentication!(account, user)
+      env["warden"].set_user(user, :scope => :user)
+      env["warden"].set_user(account, :scope => :account)
+    end
+    helper_method :force_authentication!
+
   end
 end
