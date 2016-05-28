@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160526214411) do
+ActiveRecord::Schema.define(version: 20160527171701) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "subscribem_accounts", force: :cascade do |t|
     t.string   "name"
@@ -21,7 +24,7 @@ ActiveRecord::Schema.define(version: 20160526214411) do
     t.string   "subdomain"
   end
 
-  add_index "subscribem_accounts", ["subdomain"], name: "index_subscribem_accounts_on_subdomain"
+  add_index "subscribem_accounts", ["subdomain"], name: "index_subscribem_accounts_on_subdomain", using: :btree
 
   create_table "subscribem_members", force: :cascade do |t|
     t.integer  "account_id"
@@ -35,6 +38,13 @@ ActiveRecord::Schema.define(version: 20160526214411) do
     t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+  end
+
+  create_table "things", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
