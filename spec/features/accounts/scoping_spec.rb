@@ -1,4 +1,5 @@
 require "rails_helper"
+require 'subscribem/testing_support/factories/account_factory'
 feature "Account scoping" do
   let!(:account_a) { FactoryGirl.create(:account) }
   let!(:account_b) { FactoryGirl.create(:account) }
